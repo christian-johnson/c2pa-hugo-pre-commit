@@ -67,7 +67,7 @@ In your Hugo site's `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/christian-johnson/c2pa-hugo-pre-commit
-    rev: v1.1.0
+    rev: 1.1.0
     hooks:
       - id: sign-hugo-images-c2pa
         args:
