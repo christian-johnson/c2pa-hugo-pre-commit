@@ -1,0 +1,8 @@
+LICENSE
+pyproject.toml
+sign_images.py
+c2pa_hugo_pre_commit.egg-info/PKG-INFO
+c2pa_hugo_pre_commit.egg-info/SOURCES.txt
+c2pa_hugo_pre_commit.egg-info/dependency_links.txt
+c2pa_hugo_pre_commit.egg-info/entry_points.txt
+c2pa_hugo_pre_commit.egg-info/top_level.txt

@@ -1,0 +1,2 @@
+[console_scripts]
+sign-hugo-images-c2pa = sign_images:main

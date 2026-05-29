@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "c2pa-hugo-pre-commit"
+version = "1.1.0"
+description = "Pre-commit hook to sign Hugo site images with C2PA"
+requires-python = ">=3.11"
+
+[project.scripts]
+sign-hugo-images-c2pa = "sign_images:main"
+
+[tool.setuptools]
+py-modules = ["sign_images"]
+
+# ---------------------------------------------------------------------------
+# Ruff
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # Docstring style — too opinionated; substance is enforced in prose guidelines
+    "D",
+    # Type annotation completeness — ty handles this more accurately
+    "ANN",
+    # Boolean positional arguments — useful pattern in many contexts
+    "FBT",
+    # Eradicate (commented-out code detection) — too aggressive during development
+    "ERA",
+    # TODO/FIXME enforcement — overly bureaucratic
+    "TD", "FIX",
+    # subprocess with list args is the *safe* form; these rules fire as false
+    # positives since all commands are constructed from resolved absolute paths
+    # or trusted constants, never from unsanitised user input
+    "S603", "S607",
+    # subprocess import — necessary for running c2patool and op
+    "S404",
+    # Magic value comparison — exit code `== 0` and chunk size `65536` are
+    # idiomatic constants in this context; extracting them adds no clarity
+    "PLR2004",
+    # Trailing comma — conflicts with ruff formatter
+    "COM812",
+    # Copyright notice — not applicable to a public OSS pre-commit hook
+    "CPY001",
+    # pydoclint-style docstring return/param docs — redundant with inline
+    # docstrings that already describe returns in prose
+    "DOC",
+    # Shebang in non-executable file — handled separately via chmod
+    "EXE001",
+    # Missing __init__.py — this is a single-module script, not a package
+    "INP001",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-args = 6        # sign_image legitimately needs 6 parameters
+max-branches = 12
+max-returns = 6
+max-statements = 50
+max-locals = 15
+max-bool-expr = 5
+max-positional-args = 6
+
+# ---------------------------------------------------------------------------
+# ty
+# ---------------------------------------------------------------------------
+
+[tool.ty.environment]
+python-version = "3.11"

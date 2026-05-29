@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: c2pa-hugo-pre-commit
+Version: 1.1.0
+Summary: Pre-commit hook to sign Hugo site images with C2PA
+Requires-Python: >=3.11
+License-File: LICENSE
+Dynamic: license-file
