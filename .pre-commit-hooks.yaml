@@ -1,0 +1,6 @@
+- id: sign-hugo-images-c2pa
+  name: Enforce signing of images on a Hugo site with C2PA
+  entry: sign-hugo-images-c2pa
+  language: python
+  pass_filenames: false
+  always_run: true
