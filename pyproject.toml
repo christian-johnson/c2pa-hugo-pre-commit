@@ -4,9 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "c2pa-hugo-pre-commit"
-version = "1.1.0"
+version = "1.2.0"
 description = "Pre-commit hook to sign Hugo site images with C2PA"
 requires-python = ">=3.11"
+dependencies = [
+    # Pillow resizes each source into responsive variants before signing, so the
+    # bytes Hugo serves are the exact bytes that were signed.
+    "pillow>=10",
+]
 
 [project.scripts]
 sign-hugo-images-c2pa = "sign_images:main"
@@ -60,7 +65,7 @@ ignore = [
 max-complexity = 10
 
 [tool.ruff.lint.pylint]
-max-args = 6        # sign_image legitimately needs 6 parameters
+max-args = 7        # sign_image needs 7 (incl. optional --parent ingredient)
 max-branches = 12
 max-returns = 6
 max-statements = 50
